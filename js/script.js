@@ -1,91 +1,20 @@
 "use strict";
 
-
-//let resultBoolean = confirm("hi, ТЫ ТУТ?");
-
-//console.log(resultBoolean);
+      let numberOfFilms;
 
 
-//const answer = prompt("Вам есть 18?", "18");
+      function start() {
 
-//console.log(answer + 5);
+        numberOfFilms = +prompt('Сколько фильмов вы уже смотрели?', '');
 
-//const category = 'toys';
+        while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+          numberOfFilms = +prompt('Сколько фильмов вы уже смотрели?', '');
+        }
 
+      }
 
-/*
-// пример как было раньше 
-console.log('https://someurl.com/' + category);
-// пример как делают сейчас 
-console.log(`https://someurl.com/${category}`);
-*/
-
-//console.log('arr' + " - object");
-//console.log(4 + "5"); // 45
-//console.log(4 + +"5"); // 9
-
-
-// Постфиксная форма записи (ставим знаки после значения)
-/*let incr = 10,
-    decr = 10;
-
-    incr++; // Оператор инкремента 
-    decr--; // Оператор декремента
-
-    console.log(incr); // Получим 11 ибо увеличили на 1-ед
-    console.log(decr); // Получим 9 ибо уменьшили на 1 ед
-*/
-
-// Префиксная форма записи (ставим знаки перед значением)
-/*let incr = 10,
-    decr = 10;
-
-    ++incr; // Оператор инкремента 
-    --decr; // Оператор декремента
-
-    console.log(incr); // Получим 11 ибо увеличили на 1-ед
-    console.log(decr); // Получим 9 ибо уменьшили на 1 ед
-*/
-
-   /* let incr = 10,
-    decr = 10;
-
-    //++incr; // Оператор инкремента 
-    //--decr; // Оператор декремента
-
-    console.log(++incr); // Получим 11 ибо увеличили на 1-ед
-    console.log(--decr); // Получим 9 ибо уменьшили на 1 ед
-*/
-
-
-//console.log(5%2);
-
-
-//console.log(2*4 === 8);
-
-/*
-&& - Оператор 'и'; // если выражение 1 (true) && выражение 2 (true) то проверка выведет true 
-|| - Оператор 'или';
-*/
-
-/*const isChecked = false,
-      isClose = false;
-
-      console.log(isChecked || !isClose);
-
-
-      console.log(2 + 2 * 2 === 8);*/
-
-
-
-
-      // lesson 1
-
-      const numberOfFilms = +prompt('Сколько фильмов вы уже смотрели?', '');
-
-
-      // lesson 2
-
+      start();
+      
       const personMovieDB = {
         count: numberOfFilms,
         movies: {},
@@ -93,16 +22,75 @@ console.log(`https://someurl.com/${category}`);
         genres: [],
         private: false
       };
+  
+      
+
+      function rememberMyFilms() {
+        for (let i = 0; i < 2; i++) {
+          const lastWatchedMovie = prompt('Один из последних просмотренных фильмов?', ''),
+          movieRate = prompt('На сколько оцените его?', '');
+  
+          if (lastWatchedMovie != null && movieRate != null && lastWatchedMovie != '' && movieRate != '' && lastWatchedMovie.length < 50) {
+              personMovieDB.movies[lastWatchedMovie] = movieRate;
+              console.log('Done!');
+          } else {
+              console.log('Error');
+              i--;
+          }
+         
+        }
+      }
+
+    //  rememberMyFilms();
+
+      function detectPersonalLevel() {
+          if (personMovieDB.count < 10) {
+            alert('Просмотрено довольно мало фильмов!');
+        } else if (personMovieDB.count >= 10 && personMovieDB.count < 30) {
+            alert('Вы классический зритель');
+        } else if (personMovieDB.count >= 30) {
+          alert('Вы киноман');
+        } else {
+            alert('Произошла ошибка');
+        }
+      }
+
+     // detectPersonalLevel();
 
 
-      // lesson 3
+      function showMyDB(hidden) {
+        if (!hidden) {
+           console.log(personMovieDB);
+        }
+      
+      }
 
-      const lastWatchedMovie = prompt('Один из последних просмотренных фильмов?', ''),
-            movieRate = prompt('На сколько оцените его?', ''),
-            lastWatchedMovie1 = prompt('Один из последних просмотренных фильмов?', ''),
-            movieRate1 = prompt('На сколько оцените его?', '');
- 
-      personMovieDB.movies[lastWatchedMovie] = movieRate;
-      personMovieDB.movies[lastWatchedMovie1] = movieRate1;
+      showMyDB(personMovieDB.private);
 
-      console.log(personMovieDB);
+
+      function writeYourGenres() {
+
+        for (let i = 1; i <= 3; i++) {
+
+          const genreNumber = prompt(`Ваш любимый жанр по номером ${i}`, '');
+          personMovieDB.genres[i - 1] = genreNumber;
+  
+        }
+       
+      }
+
+      writeYourGenres();
+
+     // console.log(personMovieDB); 
+
+
+    
+
+    
+
+      
+
+
+      
+
+
